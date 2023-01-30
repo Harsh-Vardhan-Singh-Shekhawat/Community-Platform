@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Cookies from "universal-cookie";
 import axios from "axios";
 import signinImage from "../assets/signup.jpg";
+// import Cookies from "universal-cookie";
 
 const initialState = {
   fullName: "",
@@ -12,18 +13,38 @@ const initialState = {
   avatarURL: "",
 };
 
+const cookies = new Cookies();
+
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(true);
   const [form, setForm] = useState(initialState);
   const handleChange = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
   };
+
   const switchMode = () => {
     setIsSignUp(!isSignUp);
   };
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
+    const {fullName, username, password, phoneNumber, avatarURL} = form;
+    const URL = 'http://localhost:5000/auth';
+    const {data: {token, user_id, hashedPassword}} = await axios.post(`${URL}/${ isSignUp ? 'signup' : 'login'}`,{
+      username, fullName, password, avatarURL, phoneNumber
+    });
+      cookies.set('token', token)
+      cookies.set('username', username)
+      cookies.set('fullName', fullName)
+      cookies.set('user_id', user_id)
+
+      if(isSignUp){
+        cookies.set('phoneNumber',phoneNumber)
+        cookies.set('avatarURL', avatarURL)
+        cookies.set('hashedPassword', hashedPassword)
+
+      }
+      window.location.reload(); //we qare reloading the app because it will update the authToken status before moving ahead as it was initally false.
   };
 
   return (
