@@ -44,7 +44,7 @@ const Auth = () => {
         cookies.set('hashedPassword', hashedPassword)
 
       }
-      window.location.reload(); //we qare reloading the app because it will update the authToken status before moving ahead as it was initally false.
+      window.location.reload(); //we are reloading the app because it will update the authToken status before moving ahead as it was initally false.
   };
 
   return (
@@ -122,7 +122,7 @@ const Auth = () => {
               </div>
             )}
             <div className="auth__form-container_fields-content_button">
-              <button>{isSignUp ? "Sign Up" : "Sign In"}</button>
+              <button >{isSignUp ? "Sign Up" : "Sign In"}</button>
             </div>
           </form>
           <div className="auth__form-container_fields-account">
