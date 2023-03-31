@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 
 app.get((req,res) => {
-    resizeBy.send('Jai Shree Ram')
+    res.send('Jai Shree Ram');
 })
 app.use('/routes', authRoutes);
 

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { useState } from "react";
 import Cookies from "universal-cookie";
 import axios from "axios";
 import signinImage from "../assets/signup.jpg";
@@ -18,6 +19,7 @@ const cookies = new Cookies();
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(true);
   const [form, setForm] = useState(initialState);
+
   const handleChange = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
   };
@@ -25,18 +27,70 @@ const Auth = () => {
   const switchMode = () => {
     setIsSignUp(!isSignUp);
   };
+  // //  const handleSubmit = async (e) => {
+  //       e.preventDefault();
+
+  //       const { username, password, phoneNumber, avatarURL } = form;
+
+  //       const URL = 'https://localhost:5000/auth';
+  //       // const URL = 'https://medical-pager.herokuapp.com/auth';
+
+  //       const { data: { token, userId, hashedPassword, fullName } } = await axios.post(`${URL}/${isSignup ? 'signup' : 'login'}`, {
+  //           username, password, fullName: form.fullName, phoneNumber, avatarURL,
+  //       });
+
+  //       cookies.set('token', token);
+  //       cookies.set('username', username);
+  //       cookies.set('fullName', fullName);
+  //       cookies.set('userId', userId);
+
+  //       if(isSignup) {
+  //           cookies.set('phoneNumber', phoneNumber);
+  //           cookies.set('avatarURL', avatarURL);
+  //           cookies.set('hashedPassword', hashedPassword);
+  //       }
+
+  //       window.location.reload();
+  //   }
+    //   const handleSubmit = async (e) => {
+    //     e.preventDefault();
+
+    //     const { username, password, phoneNumber, avatarURL } = form;
+
+    //     const URL = 'https://localhost:5000/auth';
+    //     // const URL = 'https://medical-pager.herokuapp.com/auth';
+
+    //     const { data: { token, userId, hashedPassword, fullName } } = await axios.post(`${URL}/${isSignup ? 'signup' : 'login'}`, {
+    //         username, password, fullName: form.fullName, phoneNumber, avatarURL,
+    //     });
+
+    //     cookies.set('token', token);
+    //     cookies.set('username', username);
+    //     cookies.set('fullName', fullName);
+    //     cookies.set('userId', userId);
+
+    //     if(isSignup) {
+    //         cookies.set('phoneNumber', phoneNumber);
+    //         cookies.set('avatarURL', avatarURL);
+    //         cookies.set('hashedPassword', hashedPassword);
+    //     }
+
+    //     window.location.reload();
+    // }
 
   const submitHandler = async (event) => {
     event.preventDefault();
+    console.log("clicked")
     const {fullName, username, password, phoneNumber, avatarURL} = form;
     const URL = 'http://localhost:5000/auth';
-    const {data: {token, user_id, hashedPassword}} = await axios.post(`${URL}/${ isSignUp ? 'signup' : 'login'}`,{
-      username, fullName, password, avatarURL, phoneNumber
+    const {data:token, userId, hashedPassword} = await axios.post(`${URL}/${ isSignUp ? 'signup' : 'login'}`,{
+      username:form.username, fullName:form.fullName, password:form.password, avatarURL:form.avatarURL, phoneNumber:form.phoneNumber
     });
+    console.log(form);
       cookies.set('token', token)
       cookies.set('username', username)
       cookies.set('fullName', fullName)
-      cookies.set('user_id', user_id)
+      cookies.set('userId', userId)
 
       if(isSignUp){
         cookies.set('phoneNumber',phoneNumber)
@@ -52,7 +106,7 @@ const Auth = () => {
       <div className="auth__form-container_fields">
         <div className="auth__form-container_fields-content">
           <p>{isSignUp ? "Sign Up" : "Sign In"}</p>
-          <form onSubmit={submitHandler}>
+          <form onSubmit={submitHandler} >
             {isSignUp && (
               <div className="auth__form-container_fields-content_input">
                 <label htmlFor="fullName">Full Name</label>

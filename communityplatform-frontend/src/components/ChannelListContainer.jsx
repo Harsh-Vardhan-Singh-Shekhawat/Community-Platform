@@ -30,7 +30,7 @@ const CompanyHeader = () => {
 }
 
 
-const ChannelListContainer = () => {
+const ChannelListContainer = ({isCreating, setIsCreating, isEditing, setIsEditing}) => {
 
   const logout = () =>{
     
@@ -57,12 +57,17 @@ const ChannelListContainer = () => {
           <TeamChannelList 
           {...listProps} 
             type = 'team'
+            isCreating={isCreating}
+            setIsCreating={setIsCreating}
+            isEditing={isEditing}
+            setIsEditing={setIsEditing}
           />
         )}
         Preview = {(previewProps)=>(
           <TeamChannelPreview 
             {...previewProps}
             type='team'
+            
           />
         )}
 
@@ -74,6 +79,10 @@ const ChannelListContainer = () => {
           <TeamChannelList 
           {...listProps} 
             type = 'messaging'
+            isCreating={isCreating}
+            setIsCreating={setIsCreating}
+            isEditing={isEditing}
+            setIsEditing={setIsEditing}
           />
         )}
         Preview = {(previewProps)=>(

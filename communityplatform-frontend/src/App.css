@@ -1,6 +1,6 @@
 :root {
     --primary-color: #005fff;
-    --primary-color-alpha: #005fff1a;
+    /* --primary-color-alpha: #005fff1a; */
   }
   
   html,
@@ -295,6 +295,7 @@
   .channel__container {
     height: 100%;
     width: 100%;
+    --primary-color: #005fff;
   }
   
   .str-chat__thread {
@@ -954,10 +955,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #005fff;
   }
   
   .team-channel-list__header svg {
     cursor: pointer;
+    background-color: #005fff;
+
   }
   
   .team-channel-list__header__title {
@@ -965,6 +969,8 @@
     font-size: 13px;
     line-height: 16px;
     height: 16px;
+    background-color: #005fff;
+
     color: rgba(255, 255, 255, 0.66);
     margin-bottom: 10px;
   }

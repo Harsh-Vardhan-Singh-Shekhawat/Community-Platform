@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { MessageList, MessageInput, Thread, Window, useChannelActionContext, Avatar, useChannelStateContext, useChatContext } from 'stream-chat-react';
-
+import { MessageSimple, MessageInput, Thread, Window, useChannelActionContext, Avatar, useChannelStateContext, useChatContext } from 'stream-chat-react';
+//messageSimple --> meassageTeam
 import { ChannelInfo } from '../assets';
 
 export const GiphyContext = React.createContext({});
@@ -33,7 +33,7 @@ const ChannelInner = ({ setIsEditing }) => {
       <div style={{ display: 'flex', width: '100%' }}>
         <Window>
           <TeamChannelHeader setIsEditing={setIsEditing} />
-          <MessageList />
+          <MessageSimple />
           <MessageInput overrideSubmitHandler={overrideSubmitHandler} />
         </Window>
         <Thread />
