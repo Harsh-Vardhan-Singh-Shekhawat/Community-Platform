@@ -1,7 +1,8 @@
 import React from 'react'
 import { AddChannel } from '../assets'
-const TeamChannelList = ({children, error = true, loading, type,isCreating, setIsCreating, isEditing, setIsEditing}) => {
+const TeamChannelList = ({setToggleContainer,children, error = false, loading, type,isCreating, setIsCreating, isEditing, setIsEditing}) => {
     // if(error){
+    //     console.log(error)
     //     return type === 'team' ? (
     //         <div className='team-channel-list'>
     //             <p className='team-channel-list__message'>

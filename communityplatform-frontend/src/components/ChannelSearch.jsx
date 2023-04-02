@@ -11,7 +11,6 @@ const ChannelSearch = () => {
             //Try to fetch channels
         }catch(error){
           console.log(error)
-            setQuery('');
         }
     }
     const onSearch = (event) => {

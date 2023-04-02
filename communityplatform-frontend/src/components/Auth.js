@@ -3,7 +3,6 @@ import { useState } from "react";
 import Cookies from "universal-cookie";
 import axios from "axios";
 import signinImage from "../assets/signup.jpg";
-// import Cookies from "universal-cookie";
 
 const initialState = {
   fullName: "",
@@ -27,68 +26,18 @@ const Auth = () => {
   const switchMode = () => {
     setIsSignUp(!isSignUp);
   };
-  // //  const handleSubmit = async (e) => {
-  //       e.preventDefault();
-
-  //       const { username, password, phoneNumber, avatarURL } = form;
-
-  //       const URL = 'https://localhost:5000/auth';
-  //       // const URL = 'https://medical-pager.herokuapp.com/auth';
-
-  //       const { data: { token, userId, hashedPassword, fullName } } = await axios.post(`${URL}/${isSignup ? 'signup' : 'login'}`, {
-  //           username, password, fullName: form.fullName, phoneNumber, avatarURL,
-  //       });
-
-  //       cookies.set('token', token);
-  //       cookies.set('username', username);
-  //       cookies.set('fullName', fullName);
-  //       cookies.set('userId', userId);
-
-  //       if(isSignup) {
-  //           cookies.set('phoneNumber', phoneNumber);
-  //           cookies.set('avatarURL', avatarURL);
-  //           cookies.set('hashedPassword', hashedPassword);
-  //       }
-
-  //       window.location.reload();
-  //   }
-    //   const handleSubmit = async (e) => {
-    //     e.preventDefault();
-
-    //     const { username, password, phoneNumber, avatarURL } = form;
-
-    //     const URL = 'https://localhost:5000/auth';
-    //     // const URL = 'https://medical-pager.herokuapp.com/auth';
-
-    //     const { data: { token, userId, hashedPassword, fullName } } = await axios.post(`${URL}/${isSignup ? 'signup' : 'login'}`, {
-    //         username, password, fullName: form.fullName, phoneNumber, avatarURL,
-    //     });
-
-    //     cookies.set('token', token);
-    //     cookies.set('username', username);
-    //     cookies.set('fullName', fullName);
-    //     cookies.set('userId', userId);
-
-    //     if(isSignup) {
-    //         cookies.set('phoneNumber', phoneNumber);
-    //         cookies.set('avatarURL', avatarURL);
-    //         cookies.set('hashedPassword', hashedPassword);
-    //     }
-
-    //     window.location.reload();
-    // }
 
   const submitHandler = async (event) => {
     event.preventDefault();
     console.log("clicked")
-    const {fullName, username, password, phoneNumber, avatarURL} = form;
+    const { userName, password, phoneNumber, avatarURL} = form;
     const URL = 'http://localhost:5000/auth';
-    const {data:token, userId, hashedPassword} = await axios.post(`${URL}/${ isSignUp ? 'signup' : 'login'}`,{
-      username:form.username, fullName:form.fullName, password:form.password, avatarURL:form.avatarURL, phoneNumber:form.phoneNumber
+    const {data:{token, userId, hashedPassword, fullName}} = await axios.post(`${URL}/${ isSignUp ? 'signup' : 'login'}`,{
+      userName:form.userName, fullName:form.fullName, password:form.password, avatarURL:form.avatarURL, phoneNumber:form.phoneNumber
     });
     console.log(form);
       cookies.set('token', token)
-      cookies.set('username', username)
+      cookies.set('userName', userName)
       cookies.set('fullName', fullName)
       cookies.set('userId', userId)
 
