@@ -1,3 +1,5 @@
+@import 'stream-chat-react/dist/css/index.css';
+
 :root {
     --primary-color: #005fff;
     /* --primary-color-alpha: #005fff1a; */
@@ -947,7 +949,7 @@
   }
   
   .team-channel-list__message.loading {
-    height: 115px;
+    height: 115px;  
   }
   
   .team-channel-list__header {

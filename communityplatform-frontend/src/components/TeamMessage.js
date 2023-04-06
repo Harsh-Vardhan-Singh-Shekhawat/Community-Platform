@@ -8,4 +8,4 @@ const TeamMessage = () => {
   )
 }
 
-export default TeamMessage
+export default TeamMessage;

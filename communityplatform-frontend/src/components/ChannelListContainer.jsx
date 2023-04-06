@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 import { ChannelList,useChatContext } from 'stream-chat-react'
 import Cookies from 'universal-cookie';
 import {ChannelSearch, TeamChannelList, TeamChannelPreview} from './'
-import HospitalIcon from '../assets/hospital.png';
+import HIcon from '../assets/hospital.png';
 import LogoutIcon from '../assets/logout.png';
 
 const cookies = new Cookies();
@@ -12,7 +12,7 @@ const SideBar = ({logout}) => (
     <div className="channel-list__sidebar">
         <div className="channel-list__sidebar__icon1">
             <div className="icon1__inner">
-                <img src={HospitalIcon} alt='hospital' width="30" />
+                <img src={HIcon} alt='hospital' width="30" />
             </div>
         </div>
         <div className='channel-list__sidebar__icon2'>
@@ -38,8 +38,8 @@ const CompanyHeader = () => (
 )
 
 
-const ChannelListContent = ({isCreating, setIsCreating, isEditing, setIsEditing,setToggleContainer}) => {
-  const {client }= useChatContext();
+const ChannelListContent = ({isCreating,setCreateType, setIsCreating, isEditing, setIsEditing,setToggleContainer}) => {
+  const {client}= useChatContext();
   const logout = () =>{
     
       cookies.remove('token');
@@ -57,24 +57,24 @@ const ChannelListContent = ({isCreating, setIsCreating, isEditing, setIsEditing,
 
   return (
     <>
-      <SideBar  onClick={logout} />
+      <SideBar logout={logout} />
       <div className='channel-list__list__wrapper'>
         <CompanyHeader /> 
         <ChannelSearch setToggleContainer={setToggleContainer}/>
         <ChannelList 
-        filters={filters}
-        channelRenderFilterFn = {customChannelTeamFilter}
-        List= {(listProps)=>(
-          <TeamChannelList 
-          {...listProps} 
-            type = 'team'
-            isCreating={isCreating}
-            setIsCreating={setIsCreating}
-            isEditing={isEditing}
-            setIsEditing={setIsEditing}
-            setToggleContainer={setToggleContainer}
-          />
-        )}
+                    filters={filters}
+                    channelRenderFilterFn={customChannelTeamFilter}
+                    List={(listProps) => (
+                        <TeamChannelList 
+                            {...listProps}
+                            type="team"
+                            isCreating={isCreating}
+                            setIsCreating={setIsCreating}
+                            setCreateType={setCreateType} 
+                            setIsEditing={setIsEditing}
+                            setToggleContainer={setToggleContainer}
+                        />
+                    )}
         Preview = {(previewProps)=>(
           <TeamChannelPreview 
             {...previewProps}
